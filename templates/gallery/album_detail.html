@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="mb-4">
+    <a href="{% url 'album-list' %}" class="text-decoration-none">← Back to Albums</a>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-8">
+        <h2>{{ album.title }}</h2>
+        <p class="lead">{{ album.description }}</p>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Add Photo</h5>
+                <form action="{% url 'photo-create' album.pk %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ photo_form.as_p }}
+                    <button type="submit" class="btn btn-success btn-sm w-100">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {% for photo in album.photos.all %}
+    <div class="col-md-3 mb-4">
+        <div class="card shadow-sm h-100">
+            <!-- Cloudinary automatically serves the image URL -->
+            <img src="{{ photo.image.url }}" class="card-img-top" alt="{{ photo.caption }}">
+            <div class="card-body p-2 d-flex justify-content-between align-items-center">
+                <small class="text-muted">{{ photo.caption }}</small>
+                <form action="{% url 'photo-delete' photo.pk %}" method="post" class="m-0">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger py-0 px-2">&times;</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

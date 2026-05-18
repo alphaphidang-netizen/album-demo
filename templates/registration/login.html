@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm mt-5">
+            <div class="card-header bg-primary text-white text-center">
+                <h4 class="mb-0">System Login</h4>
+            </div>
+            <div class="card-body p-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Username</label>
+                        <!-- Apply form-control to standard auth forms -->
+                        <input type="text" name="username" class="form-control" required id="id_username">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Password</label>
+                        <input type="password" name="password" class="form-control" required id="id_password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Authenticate</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

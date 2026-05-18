@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 mt-5">
+        <div class="card border-danger shadow">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">Confirm Deletion</h4>
+            </div>
+            <div class="card-body text-center p-5">
+                <p class="lead">Are you sure you want to delete the album <strong>"{{ object.title }}"</strong>?</p>
+                <p class="text-muted small">Warning: This will permanently delete all photos inside this album.</p>
+                
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger px-4 me-2">Yes, Delete Album</button>
+                    <a href="{% url 'album-list' %}" class="btn btn-secondary px-4">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
