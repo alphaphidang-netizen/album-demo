@@ -1,0 +1,27 @@
+{% extends 'gallery/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow border-0">
+            <div class="card-header bg-white border-bottom-0 pt-4 pb-0 px-4 text-center">
+                <h3 class="h4 text-secondary mb-0">Welcome Back</h3>
+            </div>
+            <div class="card-body p-4">
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    {{ form.as_p }}
+                    
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>
+                </form>
+                
+                <div class="text-center mt-3">
+                    <small class="text-muted">Don't have an account? Ask an admin to create one.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
